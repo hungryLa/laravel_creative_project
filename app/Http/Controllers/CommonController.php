@@ -8,7 +8,6 @@ use App\Models\Post;
 class CommonController extends Controller
 {
     public function index(){
-        $post = Post::find(1);
         return view('index');
     }
 

@@ -1,11 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\CommonController;
+Route::get('/', [CommonController::class, 'index']);
 
 use App\Http\Controllers\PostController;
-
-Route::get('/', [PostController::class, 'index']);
+Route::get('/posts', [PostController::class, 'index']);
+Route::get('/posts/create',[PostController::class,'create']);
 
 Route::get('/auth',[CommonController::class,'auth'])->name("auth");
 Route::post('/auth',[CommonController::class,'auth'])->name("auth");
