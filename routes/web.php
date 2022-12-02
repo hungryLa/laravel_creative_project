@@ -8,6 +8,8 @@ Route::get('/', [CommonController::class, 'index']);
 use App\Http\Controllers\PostController;
 Route::get('/posts', [PostController::class, 'index']);
 Route::get('/posts/create',[PostController::class,'create']);
+Route::get('/posts/update/{id}',[PostController::class,'update']);
+Route::get('/posts/delete/{id}',[PostController::class,'delete']);
 
 Route::get('/auth',[CommonController::class,'auth'])->name("auth");
 Route::post('/auth',[CommonController::class,'auth'])->name("auth");

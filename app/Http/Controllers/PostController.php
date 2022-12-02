@@ -34,6 +34,39 @@ class PostController extends Controller
         foreach ($postArr as $item){
             Post::create($item);
         }
+    }
+
+    public function update($id){
+        $post = Post::find($id);
         
+        $post->update([
+            'title' => 'Updated',
+            'content' => 'Updated',
+            'image' => 'Updated',
+            'likes' => 2,
+            'is_published' => 1,
+        ]);
+        dd("Updated");
+    }
+
+    public function delete($id){
+        $post = Post::find($id);
+
+        $post->delete();
+
+        dd('Success');
+    }
+
+    // This method restores the record if the deletion was soft
+    public function restore($id)
+    {
+        $post = Post::withTrashed()->find($id);
+
+        if($post->restore()){
+            dd("Success");
+        }
+        else{
+            dd("Something wrong");
+        }  
     }
 }
