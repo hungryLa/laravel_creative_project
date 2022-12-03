@@ -10,50 +10,45 @@ class PostController extends Controller
     public function index(){
         $posts = Post::all();
 
-        return view('posts',compact('posts'));
+        return view('post.index',compact('posts'));
     }
 
     public function create(){
-        $postArr =[
-            [
-                'title' => 'Name of post',
-                'content' => 'Content of post',
-                'image' => 'image.jpg',
-                'likes' => 10,
-                'is_published' => 1,
-            ],
-            [
-                'title' => 'Another name of post',
-                'content' => 'Another content of post',
-                'image' => 'image1.jpg',
-                'likes' => 20,
-                'is_published' => 1,
-            ]
-        ];
-        foreach ($postArr as $item){
-            Post::create($item);
-        }
+        return view('post.create');
     }
 
-    public function update($id){
-        $post = Post::find($id);
-        
-        $post->update([
-            'title' => 'Updated',
-            'content' => 'Updated',
-            'image' => 'Updated',
-            'likes' => 2,
-            'is_published' => 1,
+    public function store(){
+        $data = request()->validate([
+            'title' => 'string',
+            'content' => 'string',
+            'image' => 'string',
         ]);
-        dd("Updated");
+        Post::create($data);
+        return redirect()->route('posts.index');
+    }
+    // Method to show of post
+    public function show(Post $post){
+        return view('post.show',compact('post'));
     }
 
-    public function delete($id){
-        $post = Post::find($id);
+    public function edit(Post $post){
+        return view('post.edit', compact('post'));
+    }
+    public function update(Post $post){
+        $data = request()->validate([
+            'title' => 'string',
+            'content' => 'string',
+            'image' => 'string',
+        ]);
+        $post->update($data);
+        return redirect()->route('posts.show', $post->id);
+    }
 
+
+    public function delete(Post $post){
         $post->delete();
 
-        dd('Success');
+        return redirect()->route('posts.index');
     }
 
     // This method restores the record if the deletion was soft
