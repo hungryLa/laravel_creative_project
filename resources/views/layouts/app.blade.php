@@ -9,7 +9,9 @@
     </head>
     <body>
     <div id = "borderBody" class="min-vh-100">
-        @include('inc.header')
+        <div class="container">
+            @include('inc.header')
+        </div>
         <div class = "container p-3">
 
             <div class="row">
