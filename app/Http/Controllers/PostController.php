@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Topic;
 
 class PostController extends Controller
 {
     public function index(){
-        $posts = Post::all();
-
+        // $posts = Post::all();
+        $topic = Topic::find(1);
+        $post = Post::find(1);
+        dd($topic->posts);
+        dd($post->topic);
         return view('post.index',compact('posts'));
     }
 

@@ -23,6 +23,10 @@ class CreatePostsTable extends Migration
             $table->timestamps();
 
             $table->softDeletes();
+
+            $table->unsignedBigInteger('topic_id')->nullable();
+
+            $table->index('topic_id', 'post_topic_idx');
         });
     }
 
