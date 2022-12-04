@@ -5,15 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Topic;
+use App\Models\Tag;
 
 class PostController extends Controller
 {
     public function index(){
         // $posts = Post::all();
         $topic = Topic::find(1);
-        $post = Post::find(1);
-        dd($topic->posts);
-        dd($post->topic);
+        $post = Post::find(3);
+        $tag = Tag::find(2);
+        // dd($topic->posts);
+        dd($tag->posts);
         return view('post.index',compact('posts'));
     }
 
