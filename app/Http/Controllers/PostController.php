@@ -6,21 +6,19 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Topic;
 use App\Models\Tag;
+use App\Models\PostTag;
 
 class PostController extends Controller
 {
     public function index(){
-        // $posts = Post::all();
-        $topic = Topic::find(1);
-        $post = Post::find(3);
-        $tag = Tag::find(2);
-        // dd($topic->posts);
-        dd($tag->posts);
+        $posts = Post::all();
         return view('post.index',compact('posts'));
     }
 
     public function create(){
-        return view('post.create');
+        $topics = Topic::all();
+        $tags = Tag::all();
+        return view('post.create',compact('topics','tags'));
     }
 
     public function store(){
@@ -28,8 +26,16 @@ class PostController extends Controller
             'title' => 'string',
             'content' => 'string',
             'image' => 'string',
+            'topic_id' => '',
+            'tags' => '',
         ]);
-        Post::create($data);
+        $tags = $data['tags'];
+        unset($data['tags']);
+   
+        $post = Post::create($data);
+
+        $post->tags()->attach($tags);
+        
         return redirect()->route('posts.index');
     }
     // Method to show of post
@@ -38,7 +44,9 @@ class PostController extends Controller
     }
 
     public function edit(Post $post){
-        return view('post.edit', compact('post'));
+        $topics = Topic::all();
+        $tags = Tag::all();
+        return view('post.edit', compact('post','topics','tags'));
     }
     public function update(Post $post){
         $data = request()->validate([
