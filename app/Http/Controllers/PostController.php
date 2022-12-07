@@ -23,7 +23,7 @@ class PostController extends Controller
 
     public function store(){
         $data = request()->validate([
-            'title' => 'string',
+            'title' => 'required|string',
             'content' => 'string',
             'image' => 'string',
             'topic_id' => '',
@@ -53,8 +53,15 @@ class PostController extends Controller
             'title' => 'string',
             'content' => 'string',
             'image' => 'string',
+            'topic_id' => '',
+            'tags' => '',
         ]);
+        $tags = $data['tags'];
+        unset($data['tags']);
+
         $post->update($data);
+
+        $post->tags()->sync($tags);
         return redirect()->route('posts.show', $post->id);
     }
 

@@ -38,18 +38,21 @@
         </div>
     </div>
     <div class="mb-3 row">
-        <label for="tag_id" class="col-sm-2 col-form-label">Topic</label>
+        <label for="tags" class="col-sm-2 col-form-label">Tags</label>
         <div class="col-sm-10">
-            <select class="form-select" aria-label="Default select example" name="tag_id" id="tag_id">
+            <select class="form-select" multiple aria-label="multiple select example" name="tags[]" id="tags">
                 @foreach ($tags as $tag)
-                    <option 
-                        {{ $post->tag_id == $tag->id ? "selected" : "" }} 
-                        value="{{ $tag->id }}">{{ $tag->title }}
-                    </option>
+                <option 
+                    @foreach ($post->tags as $postTag)
+                    {{ $postTag->id == $tag->id ? "selected" : "" }} 
+                    @endforeach
+                    value="{{ $tag->id }}">{{ $tag->title }}
+                </option>
                 @endforeach
             </select>
         </div>
     </div>
+    
     <button type="submit" class="btn btn-success">Edit</button>
 </form>
 
