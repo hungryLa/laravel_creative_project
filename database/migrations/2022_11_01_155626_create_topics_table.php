@@ -21,9 +21,9 @@ class CreateTopicsTable extends Migration
             $table->softDeletes();
         });
 
-        Schema::table('posts', function (Blueprint $table) {
-            $table->foreign('topic_id', 'post_topic_fk')->on('topics')->references('id');
-        });
+        // Schema::table('posts', function (Blueprint $table) {
+        //     $table->foreign('topic_id', 'post_topic_fk')->on('topics')->references('id');
+        // });
     }
 
     /**

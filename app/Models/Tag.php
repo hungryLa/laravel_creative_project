@@ -13,7 +13,7 @@ class Tag extends Model
 
     protected $guarded = [];
 
-    public function Posts(){
-        return $this->belongsToMany(Post::class, 'post_tags');
+    public function posts(){
+        return $this->belongsToMany(Post::class);
     }
 }
