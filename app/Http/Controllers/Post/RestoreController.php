@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Post;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Post\BaseController;
 use App\Models\Post;
 
 
-class RestoreController extends Controller
+class RestoreController extends BaseController
 {
     public function __invoke($id)
     {
