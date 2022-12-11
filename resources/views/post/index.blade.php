@@ -7,5 +7,5 @@
     @foreach ($posts as $post)
         <p>{{ $post->id }}. <a href="{{ route('posts.show', $post->id) }}">{{ $post->title }}</a></p>
     @endforeach
-    {{$posts->links()}}
+    {{$posts->withQueryString()->links()}}
 @endsection
