@@ -3,9 +3,15 @@
 @section("title")Посты@endsection
 
 @section("content")
-    <p><a href="{{ route('posts.create') }}" class="btn btn-primary" >Add one</a></p>
+    <div>
+        <a href="{{ route('posts.create') }}" class="btn btn-primary" >Add one</a>
+    </div>
+
     @foreach ($posts as $post)
         <p>{{ $post->id }}. <a href="{{ route('posts.show', $post->id) }}">{{ $post->title }}</a></p>
     @endforeach
-    {{$posts->withQueryString()->links()}}
+
+    <div>
+        {{$posts->withQueryString()->links()}}
+    </div>
 @endsection
