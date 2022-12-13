@@ -1,10 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.mainsite')
 
-@section("title")Посты@endsection
+@section("title")
+    Посты
+@endsection
 
 @section("content")
     <div>
-        <a href="{{ route('posts.create') }}" class="btn btn-primary" >Add one</a>
+        <a href="{{ route('posts.create') }}" class="btn btn-primary">Add one</a>
     </div>
 
     @foreach ($posts as $post)

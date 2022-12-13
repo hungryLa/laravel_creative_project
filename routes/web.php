@@ -9,12 +9,15 @@ use App\Http\Controllers\Post\ShowController;
 use App\Http\Controllers\Post\StoreController;
 use App\Http\Controllers\Post\UpdateController;
 use App\Http\Controllers\TopicController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/', [CommonController::class, 'index'])->name('main');
-Route::get('/auth', [CommonController::class, 'auth'])->name("auth");
-Route::post('/auth', [CommonController::class, 'auth'])->name("auth");
-Route::get('/registration', [CommonController::class, 'registration'])->name("registration");
 
 Route::group([], function () {
     Route::get('/posts', IndexController::class)->name('posts.index');
@@ -37,11 +40,14 @@ Route::delete('/topics/{post}', [TopicController::class, 'delete'])->name('topic
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\PostController;
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('', [AdminController::class, 'index'])->name('admin.index');
     Route::group(['prefix' => 'posts'], function () {
         Route::get('', [PostController::class,'index'])->name('admin.posts.index');
     });
 });
+
+
+
 
 

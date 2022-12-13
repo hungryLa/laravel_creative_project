@@ -1,6 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.mainsite')
 
-@section("title")Личный кабинет@endsection
+@section("title")
+    Личный кабинет
+@endsection
 
 @section("content")
     <h2>Кабинет</h2>

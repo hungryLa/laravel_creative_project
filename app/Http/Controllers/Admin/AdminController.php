@@ -10,6 +10,7 @@ use App\Models\Post;
 class AdminController extends Controller
 {
     public function index(){
-        return view('admin.index');
+        $posts = Post::paginate(10);
+        return view('admin.index',compact('posts'));
     }
 }

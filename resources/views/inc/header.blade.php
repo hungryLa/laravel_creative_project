@@ -8,7 +8,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{route('auth')}}">Cabinet</a>
+                    <a class="nav-link active" aria-current="page" href="{{route('login')}}">Cabinet</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('posts.index')}}">Posts</a>

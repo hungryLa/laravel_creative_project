@@ -1,6 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.mainsite')
 
-@section("title")Контакты@endsection
+@section("title")
+    Контакты
+@endsection
 
 @section("content")
     <h2>Связь</h2>
